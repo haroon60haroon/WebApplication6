@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba3b624efe34418682993b410ec74178" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="CUSTFYPModel1.Artefact" Width="1.5" PointX="2.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Assessment" Width="1.5" PointX="4.375" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Comment" Width="1.5" PointX="7.875" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.InstructorProject" Width="1.5" PointX="2.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.ProjectExam" Width="1.5" PointX="6.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Statement" Width="1.5" PointX="9.625" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Assessment_ProjectExam" ManuallyRouted="false" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Comment_ProjectExam" ManuallyRouted="false" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Statement_Comment" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.PLO" Width="1.5" PointX="4.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.CLO" Width="1.5" PointX="2.625" PointY="4.75" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_CLO_PLO" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Exam" Width="1.5" PointX="9.625" PointY="9.875" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_ProjectExam_Exam" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Question" Width="1.5" PointX="6.125" PointY="10.75" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Assessment_Question" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Question_CLO" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Question_Exam" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Panel" Width="1.5" PointX="7.875" PointY="11.5" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Instructor" Width="1.5" PointX="4.375" PointY="9.625" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Comment_Instructor" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Instructor_Panel" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_InstructorProject_Instructor" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Announcement" Width="1.5" PointX="2.5" PointY="11.75" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Project" Width="1.5" PointX="6.125" PointY="7.25" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Artefact_Project" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_InstructorProject_Project" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_ProjectExam_Project" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Group" Width="1.5" PointX="0.75" PointY="9" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Group_Panel" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Project_Group" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Student" Width="1.5" PointX="7.875" PointY="7.5" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Assessment_Student" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Student_Project" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Mark" Width="1.5" PointX="9.625" PointY="6.75" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Marks_Exam" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Marks_Project" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Marks_Question" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Marks_Student" />
+        <EntityTypeShape EntityType="CUSTFYPModel1.Term" Width="1.5" PointX="0.75" PointY="7.25" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Announcement_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_CLO_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Exam_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Group_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Instructor_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Panel_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_PLO_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Project_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Question_Term" />
+        <AssociationConnector Association="CUSTFYPModel1.FK_Student_Term" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

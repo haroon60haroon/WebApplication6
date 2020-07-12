@@ -1,0 +1,1757 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CUSTFYPModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive " Type="varchar" MaxLength="50" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artefact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="SourcePath" Type="text" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectExamId" Type="int" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+        </EntityType>
+        <EntityType Name="CLO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="PLOId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstructorId" Type="int" />
+          <Property Name="ProjectExamId" Type="int" />
+          <Property Name="SourcePath" Type="text" />
+          <Property Name="Reason" Type="text" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="Weightage" Type="int" Nullable="false" />
+          <Property Name="AnnouncedDate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeadIine" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="StudentId1" Type="varchar" MaxLength="100" />
+          <Property Name="StudentId2" Type="varchar" MaxLength="100" />
+          <Property Name="StudentId3" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+          <Property Name="PanelId" Type="int" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Slot" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+          <Property Name="PanelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InstructorProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstructorId" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="ExamId" Type="int" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="Marks" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Panel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PLO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectExam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamId" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="260" Nullable="false" />
+          <Property Name="CLOId" Type="int" Nullable="false" />
+          <Property Name="ExamId" Type="int" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentId" Type="int" />
+          <Property Name="Statement" Type="text" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegNo" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="DOB" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreditHourEnrolled" Type="int" Nullable="false" />
+          <Property Name="CreditHourCompleted" Type="int" Nullable="false" />
+          <Property Name="Cgpa" Type="float" Nullable="false" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateFrom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateTo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Announcement_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artefact_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Artefact" Type="Self.Artefact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Artefact">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_ProjectExam">
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectExam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="ProjectExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assessment_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLO_PLO">
+          <End Role="PLO" Type="Self.PLO" Multiplicity="1" />
+          <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLO">
+              <PropertyRef Name="PLOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLO_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLO">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_ProjectExam">
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectExam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ProjectExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Panel">
+          <End Role="Panel" Type="Self.Panel" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Panel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Group_Student1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Group_Student1" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Group_Student2' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Group_Student2" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Group_Student3' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Group_Student3" />-->
+        <Association Name="FK_Group_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Panel">
+          <End Role="Panel" Type="Self.Panel" Multiplicity="1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Panel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorProject_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="InstructorProject" Type="Self.InstructorProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InstructorProject">
+              <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorProject_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="InstructorProject" Type="Self.InstructorProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InstructorProject">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Panel_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Panel" Type="Self.Panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Panel">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLO_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="PLO" Type="Self.PLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PLO">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectExam_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="0..1" />
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectExam">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectExam_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectExam">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_CLO">
+          <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CLOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statement_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Statement" Type="Self.Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Statement">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Term">
+          <End Role="Term" Type="Self.Term" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CUSTFYPModel1StoreContainer">
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artefact" EntityType="Self.Artefact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assessment" EntityType="Self.Assessment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLO" EntityType="Self.CLO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstructorProject" EntityType="Self.InstructorProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Panel" EntityType="Self.Panel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLO" EntityType="Self.PLO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectExam" EntityType="Self.ProjectExam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statement" EntityType="Self.Statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Term" EntityType="Self.Term" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Announcement_Term" Association="Self.FK_Announcement_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artefact_Project" Association="Self.FK_Artefact_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Artefact" EntitySet="Artefact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_ProjectExam" Association="Self.FK_Assessment_ProjectExam">
+            <End Role="ProjectExam" EntitySet="ProjectExam" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Question" Association="Self.FK_Assessment_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assessment_Student" Association="Self.FK_Assessment_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Assessment" EntitySet="Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLO_PLO" Association="Self.FK_CLO_PLO">
+            <End Role="PLO" EntitySet="PLO" />
+            <End Role="CLO" EntitySet="CLO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLO_Term" Association="Self.FK_CLO_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="CLO" EntitySet="CLO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Instructor" Association="Self.FK_Comment_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_ProjectExam" Association="Self.FK_Comment_ProjectExam">
+            <End Role="ProjectExam" EntitySet="ProjectExam" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Term" Association="Self.FK_Exam_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Exam" EntitySet="Exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Panel" Association="Self.FK_Group_Panel">
+            <End Role="Panel" EntitySet="Panel" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Term" Association="Self.FK_Group_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Panel" Association="Self.FK_Instructor_Panel">
+            <End Role="Panel" EntitySet="Panel" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Term" Association="Self.FK_Instructor_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Instructor" EntitySet="Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorProject_Instructor" Association="Self.FK_InstructorProject_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="InstructorProject" EntitySet="InstructorProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorProject_Project" Association="Self.FK_InstructorProject_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="InstructorProject" EntitySet="InstructorProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Exam" Association="Self.FK_Marks_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Project" Association="Self.FK_Marks_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Question" Association="Self.FK_Marks_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Student" Association="Self.FK_Marks_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Panel_Term" Association="Self.FK_Panel_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Panel" EntitySet="Panel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLO_Term" Association="Self.FK_PLO_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="PLO" EntitySet="PLO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Group" Association="Self.FK_Project_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Term" Association="Self.FK_Project_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectExam_Exam" Association="Self.FK_ProjectExam_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="ProjectExam" EntitySet="ProjectExam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectExam_Project" Association="Self.FK_ProjectExam_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectExam" EntitySet="ProjectExam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_CLO" Association="Self.FK_Question_CLO">
+            <End Role="CLO" EntitySet="CLO" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Exam" Association="Self.FK_Question_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Term" Association="Self.FK_Question_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statement_Comment" Association="Self.FK_Statement_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Statement" EntitySet="Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Project" Association="Self.FK_Student_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Term" Association="Self.FK_Student_Term">
+            <End Role="Term" EntitySet="Term" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CUSTFYPModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artefact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SourcePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="CUSTFYPModel1.FK_Artefact_Project" FromRole="Artefact" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Assessment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectExamId" Type="Int32" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <NavigationProperty Name="ProjectExam" Relationship="Self.FK_Assessment_ProjectExam" FromRole="Assessment" ToRole="ProjectExam" />
+          <NavigationProperty Name="Question" Relationship="CUSTFYPModel1.FK_Assessment_Question" FromRole="Assessment" ToRole="Question" />
+          <NavigationProperty Name="Student" Relationship="CUSTFYPModel1.FK_Assessment_Student" FromRole="Assessment" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstructorId" Type="Int32" />
+          <Property Name="ProjectExamId" Type="Int32" />
+          <Property Name="SourcePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectExam" Relationship="Self.FK_Comment_ProjectExam" FromRole="Comment" ToRole="ProjectExam" />
+          <NavigationProperty Name="Statements" Relationship="Self.FK_Statement_Comment" FromRole="Comment" ToRole="Statement" />
+          <NavigationProperty Name="Instructor" Relationship="CUSTFYPModel1.FK_Comment_Instructor" FromRole="Comment" ToRole="Instructor" />
+        </EntityType>
+        <EntityType Name="InstructorProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstructorId" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Instructor" Relationship="CUSTFYPModel1.FK_InstructorProject_Instructor" FromRole="InstructorProject" ToRole="Instructor" />
+          <NavigationProperty Name="Project" Relationship="CUSTFYPModel1.FK_InstructorProject_Project" FromRole="InstructorProject" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectExam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamId" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Assessments" Relationship="Self.FK_Assessment_ProjectExam" FromRole="ProjectExam" ToRole="Assessment" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_ProjectExam" FromRole="ProjectExam" ToRole="Comment" />
+          <NavigationProperty Name="Exam" Relationship="CUSTFYPModel1.FK_ProjectExam_Exam" FromRole="ProjectExam" ToRole="Exam" />
+          <NavigationProperty Name="Project" Relationship="CUSTFYPModel1.FK_ProjectExam_Project" FromRole="ProjectExam" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentId" Type="Int32" />
+          <Property Name="Statement1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Statement_Comment" FromRole="Statement" ToRole="Comment" />
+        </EntityType>
+        <Association Name="FK_Assessment_ProjectExam">
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="0..1" />
+          <End Role="Assessment" Type="Self.Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectExam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="ProjectExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_ProjectExam">
+          <End Role="ProjectExam" Type="Self.ProjectExam" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectExam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ProjectExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statement_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Statement" Type="Self.Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Statement">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CUSTFYPEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artefacts" EntityType="Self.Artefact" />
+          <EntitySet Name="Assessments" EntityType="Self.Assessment" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="InstructorProjects" EntityType="Self.InstructorProject" />
+          <EntitySet Name="ProjectExams" EntityType="Self.ProjectExam" />
+          <EntitySet Name="Statements" EntityType="Self.Statement" />
+          <AssociationSet Name="FK_Assessment_ProjectExam" Association="Self.FK_Assessment_ProjectExam">
+            <End Role="ProjectExam" EntitySet="ProjectExams" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_ProjectExam" Association="Self.FK_Comment_ProjectExam">
+            <End Role="ProjectExam" EntitySet="ProjectExams" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statement_Comment" Association="Self.FK_Statement_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Statement" EntitySet="Statements" />
+          </AssociationSet>
+          <EntitySet Name="PLOes" EntityType="CUSTFYPModel1.PLO" />
+          <EntitySet Name="CLOes" EntityType="CUSTFYPModel1.CLO" />
+          <AssociationSet Name="FK_CLO_PLO" Association="CUSTFYPModel1.FK_CLO_PLO">
+            <End Role="PLO" EntitySet="PLOes" />
+            <End Role="CLO" EntitySet="CLOes" />
+          </AssociationSet>
+          <EntitySet Name="Exams" EntityType="CUSTFYPModel1.Exam" />
+          <AssociationSet Name="FK_ProjectExam_Exam" Association="CUSTFYPModel1.FK_ProjectExam_Exam">
+            <End Role="Exam" EntitySet="Exams" />
+            <End Role="ProjectExam" EntitySet="ProjectExams" />
+          </AssociationSet>
+          <EntitySet Name="Questions" EntityType="CUSTFYPModel1.Question" />
+          <AssociationSet Name="FK_Assessment_Question" Association="CUSTFYPModel1.FK_Assessment_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_CLO" Association="CUSTFYPModel1.FK_Question_CLO">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Exam" Association="CUSTFYPModel1.FK_Question_Exam">
+            <End Role="Exam" EntitySet="Exams" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <EntitySet Name="Panels" EntityType="CUSTFYPModel1.Panel" />
+          <EntitySet Name="Instructors" EntityType="CUSTFYPModel1.Instructor" />
+          <AssociationSet Name="FK_Comment_Instructor" Association="CUSTFYPModel1.FK_Comment_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Panel" Association="CUSTFYPModel1.FK_Instructor_Panel">
+            <End Role="Panel" EntitySet="Panels" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorProject_Instructor" Association="CUSTFYPModel1.FK_InstructorProject_Instructor">
+            <End Role="Instructor" EntitySet="Instructors" />
+            <End Role="InstructorProject" EntitySet="InstructorProjects" />
+          </AssociationSet>
+          <EntitySet Name="Announcements" EntityType="CUSTFYPModel1.Announcement" />
+          <EntitySet Name="Projects" EntityType="CUSTFYPModel1.Project" />
+          <AssociationSet Name="FK_Artefact_Project" Association="CUSTFYPModel1.FK_Artefact_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Artefact" EntitySet="Artefacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstructorProject_Project" Association="CUSTFYPModel1.FK_InstructorProject_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="InstructorProject" EntitySet="InstructorProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectExam_Project" Association="CUSTFYPModel1.FK_ProjectExam_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectExam" EntitySet="ProjectExams" />
+          </AssociationSet>
+          <EntitySet Name="Groups" EntityType="CUSTFYPModel1.Group" />
+          <AssociationSet Name="FK_Group_Panel" Association="CUSTFYPModel1.FK_Group_Panel">
+            <End Role="Panel" EntitySet="Panels" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Group" Association="CUSTFYPModel1.FK_Project_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <EntitySet Name="Students" EntityType="CUSTFYPModel1.Student" />
+          <AssociationSet Name="FK_Assessment_Student" Association="CUSTFYPModel1.FK_Assessment_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Assessment" EntitySet="Assessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Project" Association="CUSTFYPModel1.FK_Student_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <EntitySet Name="Marks" EntityType="CUSTFYPModel1.Mark" />
+          <AssociationSet Name="FK_Marks_Exam" Association="CUSTFYPModel1.FK_Marks_Exam">
+            <End Role="Exam" EntitySet="Exams" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Project" Association="CUSTFYPModel1.FK_Marks_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Question" Association="CUSTFYPModel1.FK_Marks_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Student" Association="CUSTFYPModel1.FK_Marks_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <EntitySet Name="Terms" EntityType="CUSTFYPModel1.Term" />
+          <AssociationSet Name="FK_Announcement_Term" Association="CUSTFYPModel1.FK_Announcement_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Announcement" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLO_Term" Association="CUSTFYPModel1.FK_CLO_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="CLO" EntitySet="CLOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exam_Term" Association="CUSTFYPModel1.FK_Exam_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Exam" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Term" Association="CUSTFYPModel1.FK_Group_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor_Term" Association="CUSTFYPModel1.FK_Instructor_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Panel_Term" Association="CUSTFYPModel1.FK_Panel_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Panel" EntitySet="Panels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PLO_Term" Association="CUSTFYPModel1.FK_PLO_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="PLO" EntitySet="PLOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Term" Association="CUSTFYPModel1.FK_Project_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Term" Association="CUSTFYPModel1.FK_Question_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Term" Association="CUSTFYPModel1.FK_Student_Term">
+            <End Role="Term" EntitySet="Terms" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="PLO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLOes" Relationship="CUSTFYPModel1.FK_CLO_PLO" FromRole="PLO" ToRole="CLO" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_PLO_Term" FromRole="PLO" ToRole="Term" />
+        </EntityType>
+        <EntityType Name="CLO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="PLOId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PLO" Relationship="CUSTFYPModel1.FK_CLO_PLO" FromRole="CLO" ToRole="PLO" />
+          <NavigationProperty Name="Questions" Relationship="CUSTFYPModel1.FK_Question_CLO" FromRole="CLO" ToRole="Question" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_CLO_Term" FromRole="CLO" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_CLO_PLO">
+          <End Type="CUSTFYPModel1.PLO" Role="PLO" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.CLO" Role="CLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLO">
+              <PropertyRef Name="PLOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="Weightage" Type="Int32" Nullable="false" />
+          <Property Name="AnnouncedDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeadIine" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectExams" Relationship="CUSTFYPModel1.FK_ProjectExam_Exam" FromRole="Exam" ToRole="ProjectExam" />
+          <NavigationProperty Name="Questions" Relationship="CUSTFYPModel1.FK_Question_Exam" FromRole="Exam" ToRole="Question" />
+          <NavigationProperty Name="Marks" Relationship="CUSTFYPModel1.FK_Marks_Exam" FromRole="Exam" ToRole="Mark" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Exam_Term" FromRole="Exam" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_ProjectExam_Exam">
+          <End Type="CUSTFYPModel1.Exam" Role="Exam" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.ProjectExam" Role="ProjectExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectExam">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="CLOId" Type="Int32" Nullable="false" />
+          <Property Name="ExamId" Type="Int32" Nullable="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assessments" Relationship="CUSTFYPModel1.FK_Assessment_Question" FromRole="Question" ToRole="Assessment" />
+          <NavigationProperty Name="CLO" Relationship="CUSTFYPModel1.FK_Question_CLO" FromRole="Question" ToRole="CLO" />
+          <NavigationProperty Name="Exam" Relationship="CUSTFYPModel1.FK_Question_Exam" FromRole="Question" ToRole="Exam" />
+          <NavigationProperty Name="Marks" Relationship="CUSTFYPModel1.FK_Marks_Question" FromRole="Question" ToRole="Mark" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Question_Term" FromRole="Question" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Assessment_Question">
+          <End Type="CUSTFYPModel1.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Assessment" Role="Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_CLO">
+          <End Type="CUSTFYPModel1.CLO" Role="CLO" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CLOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Exam">
+          <End Type="CUSTFYPModel1.Exam" Role="Exam" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Panel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Instructors" Relationship="CUSTFYPModel1.FK_Instructor_Panel" FromRole="Panel" ToRole="Instructor" />
+          <NavigationProperty Name="Groups" Relationship="CUSTFYPModel1.FK_Group_Panel" FromRole="Panel" ToRole="Group" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Panel_Term" FromRole="Panel" ToRole="Term" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Slot" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PanelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="CUSTFYPModel1.FK_Comment_Instructor" FromRole="Instructor" ToRole="Comment" />
+          <NavigationProperty Name="Panel" Relationship="CUSTFYPModel1.FK_Instructor_Panel" FromRole="Instructor" ToRole="Panel" />
+          <NavigationProperty Name="InstructorProjects" Relationship="CUSTFYPModel1.FK_InstructorProject_Instructor" FromRole="Instructor" ToRole="InstructorProject" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Instructor_Term" FromRole="Instructor" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Comment_Instructor">
+          <End Type="CUSTFYPModel1.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Panel">
+          <End Type="CUSTFYPModel1.Panel" Role="Panel" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Panel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorProject_Instructor">
+          <End Type="CUSTFYPModel1.Instructor" Role="Instructor" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.InstructorProject" Role="InstructorProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InstructorProject">
+              <PropertyRef Name="InstructorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Announcement_Term" FromRole="Announcement" ToRole="Term" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Artefacts" Relationship="CUSTFYPModel1.FK_Artefact_Project" FromRole="Project" ToRole="Artefact" />
+          <NavigationProperty Name="InstructorProjects" Relationship="CUSTFYPModel1.FK_InstructorProject_Project" FromRole="Project" ToRole="InstructorProject" />
+          <NavigationProperty Name="ProjectExams" Relationship="CUSTFYPModel1.FK_ProjectExam_Project" FromRole="Project" ToRole="ProjectExam" />
+          <NavigationProperty Name="Group" Relationship="CUSTFYPModel1.FK_Project_Group" FromRole="Project" ToRole="Group" />
+          <NavigationProperty Name="Students" Relationship="CUSTFYPModel1.FK_Student_Project" FromRole="Project" ToRole="Student" />
+          <NavigationProperty Name="Marks" Relationship="CUSTFYPModel1.FK_Marks_Project" FromRole="Project" ToRole="Mark" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Project_Term" FromRole="Project" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Artefact_Project">
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Artefact" Role="Artefact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Artefact">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstructorProject_Project">
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.InstructorProject" Role="InstructorProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InstructorProject">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectExam_Project">
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.ProjectExam" Role="ProjectExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectExam">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudentId3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PanelId" Type="Int32" />
+          <NavigationProperty Name="Panel" Relationship="CUSTFYPModel1.FK_Group_Panel" FromRole="Group" ToRole="Panel" />
+          <NavigationProperty Name="Projects" Relationship="CUSTFYPModel1.FK_Project_Group" FromRole="Group" ToRole="Project" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Group_Term" FromRole="Group" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Group_Panel">
+          <End Type="CUSTFYPModel1.Panel" Role="Panel" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Panel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="PanelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Group">
+          <End Type="CUSTFYPModel1.Group" Role="Group" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegNo" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreditHourEnrolled" Type="Int32" Nullable="false" />
+          <Property Name="CreditHourCompleted" Type="Int32" Nullable="false" />
+          <Property Name="Cgpa" Type="Double" Nullable="false" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <NavigationProperty Name="Assessments" Relationship="CUSTFYPModel1.FK_Assessment_Student" FromRole="Student" ToRole="Assessment" />
+          <NavigationProperty Name="Project" Relationship="CUSTFYPModel1.FK_Student_Project" FromRole="Student" ToRole="Project" />
+          <NavigationProperty Name="Marks" Relationship="CUSTFYPModel1.FK_Marks_Student" FromRole="Student" ToRole="Mark" />
+          <NavigationProperty Name="Term" Relationship="CUSTFYPModel1.FK_Student_Term" FromRole="Student" ToRole="Term" />
+        </EntityType>
+        <Association Name="FK_Assessment_Student">
+          <End Type="CUSTFYPModel1.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Assessment" Role="Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assessment">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Project">
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="ExamId" Type="Int32" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="Marks" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Exam" Relationship="CUSTFYPModel1.FK_Marks_Exam" FromRole="Mark" ToRole="Exam" />
+          <NavigationProperty Name="Project" Relationship="CUSTFYPModel1.FK_Marks_Project" FromRole="Mark" ToRole="Project" />
+          <NavigationProperty Name="Question" Relationship="CUSTFYPModel1.FK_Marks_Question" FromRole="Mark" ToRole="Question" />
+          <NavigationProperty Name="Student" Relationship="CUSTFYPModel1.FK_Marks_Student" FromRole="Mark" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Marks_Exam">
+          <End Type="CUSTFYPModel1.Exam" Role="Exam" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Project">
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Question">
+          <End Type="CUSTFYPModel1.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Student">
+          <End Type="CUSTFYPModel1.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="CUSTFYPModel1.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Term">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateFrom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateTo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Announcements" Relationship="CUSTFYPModel1.FK_Announcement_Term" FromRole="Term" ToRole="Announcement" />
+          <NavigationProperty Name="CLOes" Relationship="CUSTFYPModel1.FK_CLO_Term" FromRole="Term" ToRole="CLO" />
+          <NavigationProperty Name="Exams" Relationship="CUSTFYPModel1.FK_Exam_Term" FromRole="Term" ToRole="Exam" />
+          <NavigationProperty Name="Groups" Relationship="CUSTFYPModel1.FK_Group_Term" FromRole="Term" ToRole="Group" />
+          <NavigationProperty Name="Instructors" Relationship="CUSTFYPModel1.FK_Instructor_Term" FromRole="Term" ToRole="Instructor" />
+          <NavigationProperty Name="Panels" Relationship="CUSTFYPModel1.FK_Panel_Term" FromRole="Term" ToRole="Panel" />
+          <NavigationProperty Name="PLOes" Relationship="CUSTFYPModel1.FK_PLO_Term" FromRole="Term" ToRole="PLO" />
+          <NavigationProperty Name="Projects" Relationship="CUSTFYPModel1.FK_Project_Term" FromRole="Term" ToRole="Project" />
+          <NavigationProperty Name="Questions" Relationship="CUSTFYPModel1.FK_Question_Term" FromRole="Term" ToRole="Question" />
+          <NavigationProperty Name="Students" Relationship="CUSTFYPModel1.FK_Student_Term" FromRole="Term" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Announcement_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Announcement" Role="Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLO_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.CLO" Role="CLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CLO">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exam_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Exam" Role="Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exam">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Instructor" Role="Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instructor">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Panel_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Panel" Role="Panel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Panel">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PLO_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.PLO" Role="PLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PLO">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Term">
+          <End Type="CUSTFYPModel1.Term" Role="Term" Multiplicity="1" />
+          <End Type="CUSTFYPModel1.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Term">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CUSTFYPModel1StoreContainer" CdmEntityContainer="CUSTFYPEntities1">
+          <EntitySetMapping Name="Artefacts">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Artefact">
+              <MappingFragment StoreEntitySet="Artefact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SourcePath" ColumnName="SourcePath" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assessments">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Assessment">
+              <MappingFragment StoreEntitySet="Assessment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectExamId" ColumnName="ProjectExamId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
+                <ScalarProperty Name="ProjectExamId" ColumnName="ProjectExamId" />
+                <ScalarProperty Name="SourcePath" ColumnName="SourcePath" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstructorProjects">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.InstructorProject">
+              <MappingFragment StoreEntitySet="InstructorProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectExams">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.ProjectExam">
+              <MappingFragment StoreEntitySet="ProjectExam">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statements">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Statement">
+              <MappingFragment StoreEntitySet="Statement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="Statement1" ColumnName="Statement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLOes">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.PLO">
+              <MappingFragment StoreEntitySet="PLO">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLOes">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.CLO">
+              <MappingFragment StoreEntitySet="CLO">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PLOId" ColumnName="PLOId" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exams">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DeadIine" ColumnName="DeadIine" />
+                <ScalarProperty Name="AnnouncedDate" ColumnName="AnnouncedDate" />
+                <ScalarProperty Name="Weightage" ColumnName="Weightage" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="CLOId" ColumnName="CLOId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Panels">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Panel">
+              <MappingFragment StoreEntitySet="Panel">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Slot" ColumnName="Slot" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="IsActive_" ColumnName="IsActive " />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StudentId3" ColumnName="StudentId3" />
+                <ScalarProperty Name="StudentId2" ColumnName="StudentId2" />
+                <ScalarProperty Name="StudentId1" ColumnName="StudentId1" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="gName" ColumnName="gName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+                <ScalarProperty Name="Cgpa" ColumnName="Cgpa" />
+                <ScalarProperty Name="CreditHourCompleted" ColumnName="CreditHourCompleted" />
+                <ScalarProperty Name="CreditHourEnrolled" ColumnName="CreditHourEnrolled" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Mark">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terms">
+            <EntityTypeMapping TypeName="CUSTFYPModel1.Term">
+              <MappingFragment StoreEntitySet="Term">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
