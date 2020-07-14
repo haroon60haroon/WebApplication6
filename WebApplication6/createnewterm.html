@@ -67,7 +67,7 @@
                 $.ajax({
                     type: 'POST',
                     url: "/api/Account/ChangePassword",
-                    data: user,
+                    data: JSON.stringify(user),
                     contentType: "application/x-www-form-urlencoded",
                     headers: {
                         'Content-Type': 'application/json; charset-utf-8',
@@ -504,9 +504,9 @@
                                         <h5>Old Password</h5>
                                         <input type="text" id="op" required autocomplete="off" class="form-control" style="text-align:center">
                                         <h5>New Password</h5>
-                                        <input type="text" required id="np" class="form-control" style="text-align:center">
+                                        <input type="password" required id="np" class="form-control" style="text-align:center">
                                         <h5>Confirm Password</h5>
-                                        <input type="text" required id="cp" class="form-control" style="text-align:center">
+                                        <input type="password" required id="cp" class="form-control" style="text-align:center">
                                       
                                     </div>
                                     <button id="changepassword" type="button" class="btn btn-primary btn-link">Change Password</button>

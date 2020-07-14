@@ -64,6 +64,38 @@
                 });
 
             });
+            $("#changepassword").click(function () {
+                var user = {
+                    OldPassword: $("#op").val(),
+                    NewPassword: $("#np").val(),
+                    ConfirmPassword: $("#cp").val()
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Account/ChangePassword",
+                    data: JSON.stringify(user),
+                    contentType: "application/x-www-form-urlencoded",
+                    headers: {
+                        'Content-Type': 'application/json; charset-utf-8',
+                        'Accept': 'application/json',
+                        'Authorization': 'bearer ' + localStorage.getItem('token')
+                    },
+                    success: function (data) {
+                        alert("You password has been changed.");
+                        localStorage.removeItem("token");
+                        window.location.href = "supervisor.html";
+                    },
+                    failure: function (response) {
+                        alert("Failed" + response.responseText);
+                        alert(JSON.stringify(response));
+                    },
+                    error: function (response) {
+                        alert("Error" + response.responseText);
+                        alert(JSON.stringify(response));
+                    }
+                });
+
+            });
             //Loads terms in dropdown on page load
             $.ajax({
                 url: "/api/Terms",
@@ -265,7 +297,7 @@
                         projectss += '<div class="row" style="padding-left:13px;padding-right:13px;text-align:justified">';
                         projectss += '<h4 id="qid" hidden>' + result[i].Id + '</h4>';
                         projectss += '<h5 id="qtitle"><strong>Question' + j + ':</strong> ' + result[i].Title + '<strong> CLO:</strong>' + result[i].clotitle + '</h5 >';
-                        projectss += '<button class="btn btn-md btn-info" data-toggle="modal"  data-target="#myModal" onclick="savemarks(' + result[i].pid +','+ result[i].eid +','+ result[i].Id +','+ result[i].sid +')" >Assign Marks</button>';                       
+                        projectss += '<button class="btn btn-md btn-info" data-toggle="modal"  data-target="#myModal" onclick="savemarks(' + ProjectId + ',' + result[i].eid + ',' + result[i].Id + ',' + result[i].sid + ')" >Assign Marks</button>';                       
                         projectss += '</div>';
                         j++;
                     }
@@ -556,7 +588,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" on aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="#">Change Password</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#changepasswordmodal">Change Password</a>
                                     <div class="dropdown-divider"></div>
                                     <a id="loggout" class="dropdown-item">Logout</a>
                                 </div>
@@ -1711,6 +1743,31 @@
         </div>
     </div>
     <!-- Classic Modal -->
+    <div class="modal fade" id="changepasswordmodal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Old Password</h5>
+                    <input type="text" id="op" required autocomplete="off" class="form-control" style="text-align:center">
+                    <h5>New Password</h5>
+                    <input type="password" required id="np" class="form-control" style="text-align:center">
+                    <h5>Confirm Password</h5>
+                    <input type="password" required id="cp" class="form-control" style="text-align:center">
+
+                </div>
+                <button id="changepassword" type="button" class="btn btn-primary btn-link">Change Password</button>
+
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    <!-- Classic Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="text-align:center">
@@ -1762,7 +1819,7 @@
                                 <td><button id="savemarks3" type="button" class="btn btn-primary btn-link" data-dismiss="modal">Save Marks</button></td>
                             </tr>
 
-                            
+
                         </tbody>
                     </table>
 
@@ -1771,9 +1828,6 @@
         </div>
     </div>
     <!--  End Modal -->
-   
-
-
     <!--   Core JS Files   -->
     <script>
         function myFunction(x) {

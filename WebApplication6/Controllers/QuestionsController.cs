@@ -62,7 +62,6 @@ namespace WebApplication6.Controllers
                                  q.Title,
                                  clotitle = c.Title,
                                  eid = e.Id,
-                                 pid= "7014",
                                  sid="2",
 
 

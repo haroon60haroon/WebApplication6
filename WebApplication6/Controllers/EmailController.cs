@@ -8,10 +8,20 @@ using System.Net.Mail;
 using System.Web.Http.Results;
 using System.Web.Razor;
 
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Net.Http;
+using System.Web.Http.Description;
+using WebApplication6.Models;
+
+
+
 namespace WebApplication6.Controllers
 {
     public class EmailController : Controller
     {
+
         // GET: Email
         public ActionResult Index()
         {
@@ -20,10 +30,13 @@ namespace WebApplication6.Controllers
         [HttpPost]
         public ActionResult Index(WebApplication6.Models.ResetPassword model)
         {
+            var name = User.Identity.Name;
             MailMessage mn = new MailMessage("haroonqureshi60@gmail.com", model.To);
             mn.Subject = "Project Approval";
-            mn.Body = "A new Project has been Made.";
+            mn.Body = "A new Project has been Made by "+name;
+
             mn.IsBodyHtml = false;
+           
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Host = "smtp.gmail.com";
             smtpClient.Port = 587;
