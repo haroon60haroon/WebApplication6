@@ -57,7 +57,7 @@ namespace WebApplication6.Controllers
             }
             else
             {
-                List<Student> sTUDENTList = db.Students.Where(s => s.TermId == id).ToList();
+                List<Student> sTUDENTList = db.Students.Where(s => s.TermId == id && s.Term.Status=="True").ToList();
                 sTUDENTS = sTUDENTList;
                 if (sTUDENTList == null)
                 {

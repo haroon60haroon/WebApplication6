@@ -151,6 +151,18 @@
                     },
                     success: function (result) {
                         loadProjects($("#DropDownItem option:selected").val());
+                        setinstproj(result.Id);
+                        //var instproj = {
+                        //    ProjectId: $("#projectid").val(),
+                        //    InstructorId: $("#userloggedin").val(),
+                        //    Role: ("Supervisor")
+                        //};
+                        //alert(JSON.stringify(instproj));
+
+
+
+
+
                     },
                     error: function (errormessage) {
                         alert("Assign Project Title");
@@ -187,6 +199,56 @@
                 });
             });
         });
+
+        function setinstproj(Id) {
+            $.ajax({
+                type: "GET",
+                url: "/api/Groups",
+                contentType: "application/x-www-form-urlencoded",
+                headers: {
+                    'Content-Type': 'application/json; charset-utf-8',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                },
+                success: function (result) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/Instructors",
+                        contentType: "application/x-www-form-urlencoded",
+                        headers: {
+                            'Content-Type': 'application/json; charset-utf-8',
+                            'Accept': 'application/json',
+                            'Authorization': 'bearer ' + localStorage.getItem('token')
+                        },
+                        success: function (result) {
+                        var instproj = {
+                        InstructorId: result,
+                        Projectid: Id,
+                        Role: "Supervisor"
+                            };
+                            $.ajax({
+                                url: "/api/InstructorProject",
+                                data: JSON.stringify(instproj),
+                                type: "POST",
+                                contentType: "application/json;charset=utf-8",
+                                dataType: "json",
+                                headers: {
+                                    'Content-Type': 'application/json; charset-utf-8',
+                                    'Accept': 'application/json',
+                                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                                },
+                                success: function (result) {
+                                    location.reload(true);
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+
+            });
+        }
         function sendEmail() {
             $("#send").click(function () {
                 var user = {
@@ -222,6 +284,7 @@
                     var projectss = '';
                     for (var i = 0; i < result.length; i++) {
                         projectss += '<tr>';
+                        projectss += '<td id="projectid" hidden >' + result[i].Id + '</td >';
                         projectss += '<td id="projectname">' + result[i].Title + '</td >';
                         projectss += '<td id="member1">' + result[i].StudentId1 + '</td >';
                         projectss += '<td id="member2">' + result[i].StudentId2 + '</td >';

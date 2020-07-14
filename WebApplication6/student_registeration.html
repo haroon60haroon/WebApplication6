@@ -21,6 +21,30 @@
     <script src="Scripts/jquery-3.4.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            //Loads terms in dropdown on page load
+            $.ajax({
+                url: "/api/Terms",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'Content-Type': 'application/json; charset-utf-8',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                },
+                success: function (result) {
+                    var s = '<option value="-1">Please Select a Term</option>';
+                    for (var i = 0; i < result.length; i++) {
+                        s += '<option value="' + result[i].Id + '">' + result[i].Title + '</option>';
+                    }
+                    $("#DropDownItem").html(s);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+
+
             $.ajax({
                 type: "GET",
                 url: "/api/Students",
@@ -94,6 +118,7 @@
             // student data saved in database on button click
             $("#submit").click(function () {
                 var Student = {
+                    TermId: $("#DropDownItem option:selected").val(),
                     Name: $("#name").val(),
                     RegNo: $("#regno").val(),
                     DOB: $("#dob").val(),
@@ -224,6 +249,18 @@
 
             <div class="container">
                 <div class="col-md-12">
+                    <div class="col-lg-12" style="text-align:center">
+                        <h4>Select Term</h4>
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4" style="text-align:center">
+                                <select id="DropDownItem" class="form-control" style="width:395px">
+                                </select>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+
+                    </div>
                     <div class="card">
                         <div class="card-header card-header-primary" style="text-align:center">
                             <h4>Student Registeration</h4>
@@ -233,6 +270,7 @@
                             <div class="row">
                                 <div class="col-md-8 ml-auto mr-auto">
                                     <div class="row">
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating-success; text-primary">Name</label>

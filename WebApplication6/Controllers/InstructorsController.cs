@@ -20,7 +20,7 @@ namespace WebApplication6.Controllers
         // GET: api/Instructors
         public IQueryable<Instructor> GetInstructors()
         {
-            return db.Instructors.Where(t => t.IsActive == "True");
+            return db.Instructors.Where(t => t.IsActive == "True" && t.Term.Status=="True");
 
         }
 
@@ -31,6 +31,7 @@ namespace WebApplication6.Controllers
         public IHttpActionResult GetInstructor(int id, string typeOfId)
         {
             dynamic iSTRUCTORS;
+            
             if (typeOfId == "INSTRUCTORID")
             {
                 iSTRUCTORS = db.Instructors.Find(id);
@@ -48,6 +49,7 @@ namespace WebApplication6.Controllers
                 {
                     return NotFound();
                 }
+                return Ok(iSTRUCTORS);
             }
             if (typeOfId == "ProjectId") {
                 var result = from p in db.Projects
@@ -67,16 +69,17 @@ namespace WebApplication6.Controllers
 
             else
             {
-                List<Instructor> iSTRUCTORList = db.Instructors.Where(e => e.PanelId == id && e.IsActive == "True").ToList();
-                // eXAMS = db.Exams.Where(e => e.TermId == id).ToList();
-                iSTRUCTORS = iSTRUCTORList;
-                if (iSTRUCTORList == null)
-                {
-                    return NotFound();
-                }
+                var result = from i in db.Instructors
+                             where i.Email == User.Identity.Name
+                             select new
+                             {
+                                 i.Id
+                             };
+
+
+                return Ok(result);
             }
 
-            return Ok(iSTRUCTORS);
         }
 
         // PUT: api/Instructors/5
