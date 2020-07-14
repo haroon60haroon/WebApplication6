@@ -85,13 +85,8 @@
                         localStorage.removeItem("token");
                         window.location.href = "supervisor.html";
                     },
-                    failure: function (response) {
-                        alert("Failed" + response.responseText);
-                        alert(JSON.stringify(response));
-                    },
                     error: function (response) {
-                        alert("Error" + response.responseText);
-                        alert(JSON.stringify(response));
+                        alert("Please Provide Credentials");
                     }
                 });
 
