@@ -55,16 +55,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 3025 && q.IsActive=="True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive=="True" && e.Title =="Proposal Defense" && t.Status=="True" && t.IsActive=="True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
-                                 clotitle = c.Title,
-                                 eid = e.Id,
-                                 sid="2",
-
-
+                                 clotitle = c.Title
                              };
                 return Ok(result);
             }

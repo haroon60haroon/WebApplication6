@@ -119,9 +119,6 @@
                 loadProjects(TermId);
             });
           
-        
-        
-                       
         });
         
         function Alldetails(ProjectId) {
@@ -130,19 +127,12 @@
             loadpaneldetails(ProjectId);
             loadproposaldetails1(ProjectId);
             
-         //   loadproposalstudents(ProjectId);
             loadmid1details1(ProjectId);
-        //    loadmid1students(ProjectId);
             loadattendence1details1(ProjectId);
-        //    loadattendence1students(ProjectId);      
             loadfinal1details1(ProjectId);
-         //   loadfinal1students(ProjectId);
             loadmid2details1(ProjectId);
-       //     loadmid2students(ProjectId);
             loadattendence2details1(ProjectId);
-          //  loadattendence2students(ProjectId);
             loadfinal2details1(ProjectId);
-        //    loadfinal2students(ProjectId);
          
         }
         
@@ -292,49 +282,15 @@
                         projectss += '<div class="row" style="padding-left:13px;padding-right:13px;text-align:justified">';
                         projectss += '<h4 id="qid" hidden>' + result[i].Id + '</h4>';
                         projectss += '<h5 id="qtitle"><strong>Question' + j + ':</strong> ' + result[i].Title + '<strong> CLO:</strong>' + result[i].clotitle + '</h5 >';
-                        projectss += '<button class="btn btn-md btn-info" data-toggle="modal"  data-target="#myModal" onclick="savemarks(' + ProjectId + ',' + result[i].eid + ',' + result[i].Id + ',' + result[i].sid + ')" >Assign Marks</button>';                       
                         projectss += '</div>';
                         j++;
                     }
-                    
-                    
                     $('#proposalquestiondetail').html(projectss);
                 },
                 error: function (errormessage) {
                     alert(errormessage.responseText);
                 }
             });
-        }
-        function savemarks(pid, eid, qid, sid) {
-            
-            $("#marks").click(function(){ 
-                var data = {
-                    Marks: $("#s1").val(),
-                    ProjectId: pid,
-                    ExamId: eid,
-                    QuestionId: qid,
-                    StudentId: sid
-                };
-                $.ajax({
-                    url: "/api/Marks",
-                    data: JSON.stringify(data),
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    headers: {
-                        'Content-Type': 'application/json; charset-utf-8',
-                        'Accept': 'application/json',
-                        'Authorization': 'bearer ' + localStorage.getItem('token')
-                    },
-                    success: function (result) {
-                        alert("Submitted");
-                    },
-                    error: function (errormessage) {
-                        alert(errormessage.responseText);
-                    }
-                });
-            });
-         
         }
 
           //load questions details for mid1 on action click

@@ -19,13 +19,11 @@ using WebApplication6.Results;
 
 namespace WebApplication6.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
@@ -54,6 +52,8 @@ namespace WebApplication6.Controllers
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
+        [Authorize]
+
         public UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
@@ -68,6 +68,8 @@ namespace WebApplication6.Controllers
 
         // POST api/Account/Logout
         [Route("Logout")]
+        [Authorize]
+
         public IHttpActionResult Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
@@ -76,6 +78,8 @@ namespace WebApplication6.Controllers
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
+        [Authorize]
+
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
             IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -116,6 +120,8 @@ namespace WebApplication6.Controllers
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
+        [Authorize]
+
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -155,6 +161,8 @@ namespace WebApplication6.Controllers
 
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
+        [Authorize]
+
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -193,6 +201,8 @@ namespace WebApplication6.Controllers
 
         // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
+        [Authorize]
+
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -219,6 +229,7 @@ namespace WebApplication6.Controllers
 
             return Ok();
         }
+        [Authorize]
 
         // GET api/Account/ExternalLogin
         [OverrideAuthentication]
@@ -280,6 +291,8 @@ namespace WebApplication6.Controllers
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
         [Route("ExternalLogins")]
+        [Authorize]
+
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {
             IEnumerable<AuthenticationDescription> descriptions = Authentication.GetExternalAuthenticationTypes();
@@ -321,6 +334,8 @@ namespace WebApplication6.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
+        [Authorize]
+
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -342,7 +357,6 @@ namespace WebApplication6.Controllers
         // POST api/Account/RegisterCoordinator
         //[Authorize(Roles ="Coordinator")]
         [AllowAnonymous]
-
         [Route("RegisterCoordinator")]
         public async Task<IHttpActionResult> RegisterCoordinator(RegisterBindingModel model)
         {
@@ -412,6 +426,7 @@ namespace WebApplication6.Controllers
             UserManager.AddToRole(user.Id, "Student");
             return Ok();
         }
+        [Authorize]
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
