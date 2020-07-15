@@ -20,6 +20,35 @@
     <script src="Scripts/jquery-3.4.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+                    //load questions details  on action click
+
+            $.ajax({
+                url: "/api/Questions/" + 1 + "/ProjectId",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'Content-Type': 'application/json; charset-utf-8',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                },
+                success: function (result) {
+                    var projectss = '';
+                    var j = 1;
+                    for (var i = 0; i < result.length; i++) {
+
+                        projectss += '<div class="row" style="padding-left:13px;padding-right:13px;text-align:justified">';
+                        projectss += '<h4 id="qid" hidden>' + result[i].Id + '</h4>';
+                        projectss += '<h5 id="qtitle"><strong>Question' + j + ':</strong> ' + result[i].Title + '<strong> CLO:</strong>' + result[i].clotitle + '</h5 >';
+                        projectss += '</div>';
+                        j++;
+                    }
+                    $('#proposalquestiondetail').html(projectss);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
             $.ajax({
                 type: "GET",
                 url: "/api/Students",
@@ -168,7 +197,7 @@
 
             });
         });
-       
+        
         
 
     </script >
@@ -326,9 +355,8 @@
                             </div>
                         </div>
 
-                        <hr>
-                        <h3 style="text-align:left">Panel Comments</h3>
-                        <div class="row">
+                        <h3 hidden style="text-align:left">Panel Comments</h3>
+                        <div class="row" hidden>
                             <div class="container">
                                 <br>
                                 <div style="text-align:justify; padding-left:15px; padding-right:15px">
@@ -348,69 +376,17 @@
                         </div>
 
                         <hr>
-                        <h3 style="text-align:left">Evaluation</h3>
+                        <h3 style="text-align:left">Question For Evaluation</h3>
                         <div class="row">
                             <div class="col-lg-1">
                             </div>
-                            <div class="col-lg-10">
-                                <div class="card">
+                            <div class="col-lg-10" style="text-align:center">
                                     <br>
-                                    <div style="text-align:justify; padding-left:15px; padding-right:15px">
-                                        Question No.1: Stakeholder analysis (background study) and Domain Knowledge
-                                    </div>
-
+                                    <div id="proposalquestiondetail" style="text-align:center">
+                                     <h4 id="qid" hidden></h4><h4 id="qtitle"></h4> <h4 id="clotitle"></h4>
+                                     </div>
                                     <br>
-                                </div>
-                                <div class="card">
-                                    <br>
-                                    <div class="row" style="text-align:center">
-
-                                        <div class="col-lg-2">
-                                            Questions
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            Q1
-                                        </div>
-                                        <div class="col-lg-2">
-                                            Q2
-                                        </div>
-                                        <div class="col-lg-2">
-                                            Q3
-                                        </div>
-                                        <div class="col-lg-2">
-                                            Q4
-                                        </div>
-                                        <div class="col-lg-2">
-                                            Q5
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row" style="text-align:center">
-                                        <div class="col-lg-2">
-                                            Marks
-                                        </div>
-
-                                        <div class="col-lg-2">
-                                            4.8/5
-                                        </div>
-                                        <div class="col-lg-2">
-                                            4.9/5
-                                        </div>
-                                        <div class="col-lg-2">
-                                            5/5
-                                        </div>
-                                        <div class="col-lg-2">
-                                            4.7/5
-                                        </div>
-                                        <div class="col-lg-2">
-                                            4.6/5
-                                        </div>
-
-                                    </div>
-                                    <br>
-
-                                </div>
+                               
                             </div>
                             <div class="col-lg-1">
                             </div>

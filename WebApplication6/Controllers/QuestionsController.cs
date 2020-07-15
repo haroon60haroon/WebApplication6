@@ -12,7 +12,7 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Coordinator,Student,Supervisor")]
     public class QuestionsController : ApiController
     {
         private CUSTFYPEntities1 db = new CUSTFYPEntities1();
@@ -91,13 +91,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 3026 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Mid Exam 1" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams
@@ -125,13 +125,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 4032 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Attendence 1" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams
@@ -159,13 +159,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 3027 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Final Exam 1" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams
@@ -193,13 +193,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 3028 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Final Exam 1" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams
@@ -227,13 +227,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 4034 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Attendence 2" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams
@@ -261,13 +261,13 @@ namespace WebApplication6.Controllers
                 var result = from e in db.Exams
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.ExamId == 3029 && q.IsActive == "True"
+                             join t in db.Terms on e.TermId equals t.Id
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Final Exam 2" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
                                  q.Title,
                                  clotitle = c.Title
-
                              };
                 return Ok(result);
                 //var result = from e in db.Exams

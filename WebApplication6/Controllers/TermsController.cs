@@ -13,7 +13,7 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Coordinator,Student,Supervisor")]
 
     public class TermsController : ApiController
     {

@@ -12,6 +12,7 @@ using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
 {
+    [Authorize(Roles = "Coordinator,Student,Supervisor")]
     public class CommentsController : ApiController
     {
         private CUSTFYPEntities1 db = new CUSTFYPEntities1();

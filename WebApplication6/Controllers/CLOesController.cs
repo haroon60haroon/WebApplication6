@@ -11,8 +11,8 @@ using System.Web.Http.Description;
 using WebApplication6.Models;
 
 namespace WebApplication6.Controllers
-{       
-    [Authorize]
+{
+    [Authorize(Roles = "Coordinator,Student,Supervisor")]
     public class CLOesController : ApiController
     {
         private CUSTFYPEntities1 db = new CUSTFYPEntities1();
