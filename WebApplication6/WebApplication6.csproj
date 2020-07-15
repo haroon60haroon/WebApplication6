@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\ResetPasswordController.cs" />
+    <Compile Include="Controllers\SendMailerController.cs" />
     <Compile Include="Controllers\StatementsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TermsController.cs" />
@@ -275,6 +276,7 @@
     <Compile Include="Models\InstructorProject.cs">
       <DependentUpon>CSFYPModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\Mark.cs">
       <DependentUpon>CSFYPModel1.tt</DependentUpon>
     </Compile>
@@ -905,6 +907,7 @@
     <Folder Include="Views\Contact\" />
     <Folder Include="Views\Email\" />
     <Folder Include="Views\ResetPassword\" />
+    <Folder Include="Views\SendMailer\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
