@@ -28,7 +28,7 @@ namespace WebApplication6.Controllers
         [ResponseType(typeof(Instructor))]
         [Route("api/Instructors/{id}/{typeOfId}")]
 
-        public IHttpActionResult GetInstructor(int id, string typeOfId)
+        public IHttpActionResult GetInstructor(int id,string typeOfId)
         {
             dynamic iSTRUCTORS;
             
@@ -65,6 +65,33 @@ namespace WebApplication6.Controllers
                              };
                 return Ok(result);
 
+            }
+            if (typeOfId == "intresult") {
+
+                var result = from i in db.Instructors
+                             where i.Email == User.Identity.Name
+                             select new
+                             {
+                                 i.Id
+ 
+                             };
+
+
+                return Ok(result);
+            }
+            if (typeOfId == "intpanel")
+            {
+
+                var result = from i in db.Instructors
+                             where i.Email == User.Identity.Name
+                             select new
+                             {
+                                
+                                 i.PanelId
+                             };
+
+
+                return Ok(result);
             }
 
             else

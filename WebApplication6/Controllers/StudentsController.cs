@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -35,6 +36,26 @@ namespace WebApplication6.Controllers
                 sTUDENTS = db.Students.Find(id);
 
             }
+            //if (typeOfId == "GROUPID")
+            //{
+            //    ArrayList studentList = new ArrayList();
+
+            //    var result = from s in db.Students
+            //                 join g in db.Groups on s.Name equals g.StudentId1
+            //                 join g1 in db.Groups on s.Name equals g1.StudentId2
+            //                 join g2 in db.Groups on s.Name equals g2.StudentId3
+            //                 where s.Term.Status == "True" && s.Term.IsActive == "True"
+            //                 select new
+            //                 {
+            //                     studentList.Add(s.Id)
+               
+                                
+            //                 };
+            //    return Ok(studentList);
+
+            //}
+
+
 
             if (typeOfId == "ProjectId")
             {
@@ -55,9 +76,10 @@ namespace WebApplication6.Controllers
                 return Ok(result);
 
             }
+           
             else
             {
-                List<Student> sTUDENTList = db.Students.Where(s => s.TermId == id && s.Term.Status=="True").ToList();
+                List<Student> sTUDENTList = db.Students.Where(s => s.TermId == id && s.Term.IsActive == "True").ToList();
                 sTUDENTS = sTUDENTList;
                 if (sTUDENTList == null)
                 {

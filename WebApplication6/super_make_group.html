@@ -151,18 +151,7 @@
                     },
                     success: function (result) {
                         loadProjects($("#DropDownItem option:selected").val());
-                        setinstproj(result.Id);
-                        //var instproj = {
-                        //    ProjectId: $("#projectid").val(),
-                        //    InstructorId: $("#userloggedin").val(),
-                        //    Role: ("Supervisor")
-                        //};
-                        //alert(JSON.stringify(instproj));
-
-
-
-
-
+                        setinstproj(result.Id);                        
                     },
                     error: function (errormessage) {
                         alert("Assign Project Title");
@@ -171,35 +160,89 @@
             });
             //Adds Group to database on button click
             $("#groupsubmit").click(function () {
-                var group = {
-                    TermId: $("#DropDownItem option:selected").val(),
-                    StudentId1: $("#DropDownstudent").val(),
-                    StudentId2: $("#DropDownstudent1").val(),
-                    StudentId3: $("#DropDownstudent2").val(),
-                    gName: $("#grouptitle").val(),
-                    IsActive: ("True")
-                };
                 $.ajax({
+                    type: "GET",
                     url: "/api/Groups",
-                    data: JSON.stringify(group),
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
+                    contentType: "application/x-www-form-urlencoded",
                     headers: {
                         'Content-Type': 'application/json; charset-utf-8',
                         'Accept': 'application/json',
                         'Authorization': 'bearer ' + localStorage.getItem('token')
                     },
                     success: function (result) {
-                        location.reload(true);
-                    },
-                    error: function (errormessage) {
-                        alert("Make Group First");
+                        var intpanel = result.charCodeAt(0);
+                        $.ajax({
+                            url: "/api/Instructors/" + intpanel + "/intpanel",
+                            type: "GET",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            headers: {
+                                'Content-Type': 'application/json; charset-utf-8',
+                                'Accept': 'application/json',
+                                'Authorization': 'bearer ' + localStorage.getItem('token')
+                            },
+                            success: function (result) {
+                                var s = 0;
+                                for (var i = 0; i < result.length; i++) {
+                                    s = result[i].PanelId;
+                                }
+                                var group = {
+                                    TermId: $("#DropDownItem option:selected").val(),
+                                    StudentId1: $("#DropDownstudent").val(),
+                                    StudentId2: $("#DropDownstudent1").val(),
+                                    StudentId3: $("#DropDownstudent2").val(),
+                                    gName: $("#grouptitle").val(),
+                                    PanelId: s,
+                                    IsActive: ("True")
+                                };
+                                $.ajax({
+                                    url: "/api/Groups",
+                                    data: JSON.stringify(group),
+                                    type: "POST",
+                                    contentType: "application/json;charset=utf-8",
+                                    dataType: "json",
+                                    headers: {
+                                        'Content-Type': 'application/json; charset-utf-8',
+                                        'Accept': 'application/json',
+                                        'Authorization': 'bearer ' + localStorage.getItem('token')
+                                    },
+                                    success: function (result) {
+
+
+                                        location.reload(true);
+                                    },
+                                    error: function (errormessage) {
+                                        alert("Make Group First");
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
+
             });
         });
+        function student1(GroupId) {
+            alert(JSON.stringify(GroupId));
+            $.ajax({
+                url: "/api/Students/" + GroupId +"/GROUPID",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'Content-Type': 'application/json; charset-utf-8',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                },
+                success: function (result) {
+                    alert(JSON.stringify(result));
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
 
+        }
         function setinstproj(Id) {
             $.ajax({
                 type: "GET",
@@ -211,23 +254,29 @@
                     'Authorization': 'bearer ' + localStorage.getItem('token')
                 },
                 success: function (result) {
+                    var intresult = result.charCodeAt(0);
                     $.ajax({
+                        url: "/api/Instructors/" + intresult +"/intresult",
                         type: "GET",
-                        url: "/api/Instructors",
-                        contentType: "application/x-www-form-urlencoded",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
                         headers: {
                             'Content-Type': 'application/json; charset-utf-8',
                             'Accept': 'application/json',
                             'Authorization': 'bearer ' + localStorage.getItem('token')
-                        },
+                        },                        
                         success: function (result) {
-                        var instproj = {
-                        InstructorId: result,
-                        Projectid: Id,
-                        Role: "Supervisor"
+                            var s=0;
+                            for (var i = 0; i < result.length; i++) {
+                                s= result[i].Id;
+                            }
+                            var instproj = {                              
+                                InstructorId: s,
+                            Projectid: Id,
+                            Role: ("Supervisor")
                             };
                             $.ajax({
-                                url: "/api/InstructorProject",
+                                url: "/api/InstructorProjects",
                                 data: JSON.stringify(instproj),
                                 type: "POST",
                                 contentType: "application/json;charset=utf-8",
@@ -237,18 +286,17 @@
                                     'Accept': 'application/json',
                                     'Authorization': 'bearer ' + localStorage.getItem('token')
                                 },
-                                success: function (result) {
-                                    location.reload(true);
+                                success: function (result) {                                 
                                 }
                             });
 
                         }
                     });
-
                 }
 
             });
         }
+      
         function sendEmail() {
             $("#send").click(function () {
                 var user = {
@@ -292,8 +340,9 @@
                         projectss += '<td id="group">' + result[i].gName + '</td >';
                         projectss += '<td><button id="send" class="btn btn-md btn-info"><a style="color:#FFFFFF" onclick="sendEmail()"> Send For Approval </a></button></td >';
                         projectss += '</tr>';
+                    
                     }
-                    $('#projectsdisplay').html(projectss);
+                    $('#projectsdisplay').html(projectss);                   
                 },
                 error: function (errormessage) {
                     alert(errormessage.responseText);
