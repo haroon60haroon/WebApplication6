@@ -170,6 +170,27 @@
                 });
 
             });
+
+            $.ajax({
+                url: "/api/SendMailer",
+                data: JSON.stringify(data),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                headers: {
+                    'Content-Type': 'application/json; charset-utf-8',
+                    'Accept': 'application/json',
+                    'Authorization': 'bearer ' + localStorage.getItem('token')
+                },
+                success: function (result) {
+                    location.reload(true);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+
+
         });
 
 
@@ -279,7 +300,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                                 <div class="card card-login">
-                                    <form class="form" method="" action="">
+                                    <form class="form">
                                         <div class="card-header card-header-primary text-center">
                                             <h4 class="card-title">Upload Presentation</h4>
 
@@ -290,6 +311,8 @@
                                                     <span class="input-group-text">
                                                         <i class="material-icons">folder</i>
                                                     </span>
+
+                                                   
                                                 </div>
                                                 <input id="presentation" autocomplete="off" type="file" class="form-control">
                                             </div>
@@ -304,7 +327,7 @@
 
                             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                                 <div class="card card-login">
-                                    <form class="form"  method="post" action="">
+                                    <form class="form" method="post" action="">
                                         <div class="card-header card-header-primary text-center">
                                             <h4 class="card-title">Upload Document</h4>
 
