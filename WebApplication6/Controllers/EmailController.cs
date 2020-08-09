@@ -31,7 +31,7 @@ namespace WebApplication6.Controllers
         public ActionResult Index(WebApplication6.Models.ResetPassword model)
         {
             var name = User.Identity.Name;
-            MailMessage mn = new MailMessage("haroonqureshi60@gmail.com", model.To);
+            MailMessage mn = new MailMessage("Your Email Id (From)", model.To);
             mn.Subject = "Project Approval";
             mn.Body = "A new Project has been Made by "+name;
 
@@ -41,7 +41,7 @@ namespace WebApplication6.Controllers
             smtpClient.Host = "smtp.gmail.com";
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
-            NetworkCredential nc = new NetworkCredential("haroonqureshi60@gmail.com", "5348Inam128$");
+            NetworkCredential nc = new NetworkCredential("Your Email Id (From)", "Your Password");
             smtpClient.UseDefaultCredentials = true;
             smtpClient.Credentials = nc;
             smtpClient.Send(mn);

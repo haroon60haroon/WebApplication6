@@ -140,10 +140,7 @@
                     alert(errormessage.responseText);
                 }
             });
-            //Adds artifact of to database on button submit click  sourcepathforpresntation
-            $("#uploadp").click(function () {
-                alert("a");
-            });
+            
             //Adds artifact of to database on button submit click  sourcepathforpresntation
             $("#document").click(function () {
                 var data = {
@@ -171,25 +168,23 @@
 
             });
 
-            $.ajax({
-                url: "/api/SendMailer",
-                data: JSON.stringify(data),
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                headers: {
-                    'Content-Type': 'application/json; charset-utf-8',
-                    'Accept': 'application/json',
-                    'Authorization': 'bearer ' + localStorage.getItem('token')
-                },
-                success: function (result) {
-                    location.reload(true);
-                },
-                error: function (errormessage) {
-                    alert(errormessage.responseText);
-                }
+            $("#uploadp").click(function () { 
+                var formData = new FormData();
+                var file = document.getElementById("presentation").files[0];
+                formData.append("fileUploader", file);
+              
+                $.ajax({
+                    type: "POST",
+                    url: "/SendMailer",
+                    data:formData,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (data) {
+                        alert("Mail has send to Coordinator");
+                    }
+                });
             });
-
 
         });
 
@@ -300,7 +295,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                                 <div class="card card-login">
-                                    <form class="form">
+                                    <form class="form" method="" action="">
                                         <div class="card-header card-header-primary text-center">
                                             <h4 class="card-title">Upload Presentation</h4>
 
@@ -311,8 +306,6 @@
                                                     <span class="input-group-text">
                                                         <i class="material-icons">folder</i>
                                                     </span>
-
-                                                   
                                                 </div>
                                                 <input id="presentation" autocomplete="off" type="file" class="form-control">
                                             </div>
@@ -324,10 +317,9 @@
                                     </form>
                                 </div>
                             </div>
-
                             <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                                 <div class="card card-login">
-                                    <form class="form" method="post" action="">
+                                    <form class="form" method="" action="">
                                         <div class="card-header card-header-primary text-center">
                                             <h4 class="card-title">Upload Document</h4>
 

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using WebApplication6.Models;
+
 namespace WebApplication6.Controllers{
     public class SendMailerController : Controller {
         // GET: SendMailer
@@ -19,12 +21,12 @@ namespace WebApplication6.Controllers{
         /// <param name="fileUploader">Selected file data, example-filename,content,content type(file type- .txt,.png etc.),length etc.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Index(WebApplication6.Models.MailModel objModelMail, HttpPostedFileBase fileUploader) {
+        public ActionResult Index(MailModel objModelMail, HttpPostedFileBase fileUploader) {
              if (ModelState.IsValid) {
-               string from = "haroonqureshi60@gmail.com";
-                using (MailMessage mail = new MailMessage(from, objModelMail.To)){
-                    mail.Subject = objModelMail.Subject;
-                    mail.Body = objModelMail.Body;
+             
+                using (MailMessage mail = new MailMessage("YourEMailID(From)", "YourEMailID(To)")){
+                    mail.Subject = "Exam Attachments" + User.Identity.Name;
+                    mail.Body = "Below is the Attached File";
                     if (fileUploader != null) {
                         string fileName = Path.GetFileName(fileUploader.FileName);
                         mail.Attachments.Add(new Attachment(fileUploader.InputStream, fileName));
@@ -33,7 +35,7 @@ namespace WebApplication6.Controllers{
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "5348Inam128$");
+                    NetworkCredential networkCredential = new NetworkCredential("YourEMailID(From)", "Your Email Password");
                     smtp.UseDefaultCredentials = true;
                     smtp.Credentials = networkCredential;
                     smtp.Port = 587;

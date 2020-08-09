@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\B-BSCS\Final Year Project Data\project\WebApplication6\WebApplication6\WebApplication6\Models\CSFYPModel1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Hp\Downloads\WebApplication6\WebApplication6\WebApplication6\Models\CSFYPModel1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

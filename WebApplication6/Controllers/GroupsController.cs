@@ -38,7 +38,7 @@ namespace WebApplication6.Controllers
                 //     pLO = db.PLOes.Where(p => p.id == id && p.IsActive == "True");
 
             }
-
+     
             else
             {
                 List<Group> groupList = db.Groups.Where(p => p.TermId == id && p.IsActive == "True").ToList();

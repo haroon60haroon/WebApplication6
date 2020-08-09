@@ -48,8 +48,8 @@ namespace WebApplication6.Controllers
             //                 select new
             //                 {
             //                     studentList.Add(s.Id)
-               
-                                
+
+
             //                 };
             //    return Ok(studentList);
 
@@ -76,7 +76,7 @@ namespace WebApplication6.Controllers
                 return Ok(result);
 
             }
-           
+            
             else
             {
                 List<Student> sTUDENTList = db.Students.Where(s => s.TermId == id && s.Term.IsActive == "True").ToList();

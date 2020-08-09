@@ -194,7 +194,7 @@ namespace WebApplication6.Controllers
                              join q in db.Questions on e.TermId equals q.TermId
                              join c in db.CLOes on e.TermId equals c.TermId
                              join t in db.Terms on e.TermId equals t.Id
-                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Final Exam 1" && t.Status == "True" && t.IsActive == "True"
+                             where q.ExamId == e.Id && q.CLOId == c.id && q.IsActive == "True" && e.Title == "Mid Exam 2" && t.Status == "True" && t.IsActive == "True"
                              select new
                              {
                                  q.Id,
